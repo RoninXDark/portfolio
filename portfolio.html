@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stanislav Mykhailytskyi | ML & Python Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #121922;
+      --panel-2: #0f141c;
+      --text: #e8eef7;
+      --muted: #9aa7b8;
+      --accent: #6ee7b7;
+      --accent-2: #22c55e;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 25%),
+        radial-gradient(circle at top right, rgba(110,231,183,0.08), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(11, 15, 20, 0.8);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.2px;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      padding: 88px 0 54px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main {
+      padding: 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(110,231,183,0.08);
+      color: var(--accent);
+      border: 1px solid rgba(110,231,183,0.18);
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      line-height: 1.05;
+      margin: 0 0 16px;
+    }
+
+    .subtitle {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 700px;
+      margin-bottom: 28px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #052e16;
+      border: none;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .stat {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-side {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .profile-box {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+    }
+
+    .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(110,231,183,0.35), rgba(34,197,94,0.15));
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent);
+      border: 1px solid rgba(110,231,183,0.16);
+    }
+
+    .muted { color: var(--muted); }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: #d8e3f0;
+      font-size: 0.92rem;
+    }
+
+    section {
+      padding: 18px 0 24px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin: 0 0 16px;
+    }
+
+    .section-text {
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 20px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .about-card, .skills-card, .project-card, .contact-card {
+      padding: 28px;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      padding: 10px 14px;
+      background: rgba(110,231,183,0.06);
+      border: 1px solid rgba(110,231,183,0.12);
+      color: #dcfff0;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .project-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .cert-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .cert-item {
+      padding: 22px;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+
+    .footer {
+      padding: 30px 0 50px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid-2,
+      .projects-grid,
+      .cert-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main,
+      .hero-side,
+      .about-card,
+      .skills-card,
+      .project-card,
+      .contact-card {
+        padding: 22px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Stanislav<span>.</span></div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="card hero-main">
+        <div class="eyebrow">Python • Machine Learning • Data Analysis</div>
+        <h1>Machine Learning & Python Portfolio</h1>
+        <p class="subtitle">
+          I build practical data and machine learning solutions using Python. I work with data analysis,
+          preprocessing, model building, statistics, automation, APIs, and clear reporting for academic and real-world projects.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01a8f8f46065f65706" target="_blank" rel="noreferrer">View Upwork</a>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">View GitHub</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>Python</strong>
+            <span class="muted">pandas, NumPy, scikit-learn, APIs</span>
+          </div>
+          <div class="stat">
+            <strong>ML & Analytics</strong>
+            <span class="muted">regression, classification, reporting</span>
+          </div>
+          <div class="stat">
+            <strong>Automation</strong>
+            <span class="muted">bots, charts, client tools</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card hero-side">
+        <div class="profile-box">
+          <div class="profile-top">
+            <div class="avatar">SM</div>
+            <div>
+              <div style="font-size: 1.1rem; font-weight: 700;">Stanislav Mykhailytskyi</div>
+              <div class="muted">AI in Business Student • Python • ML • Analytics</div>
+            </div>
+          </div>
+          <p class="muted" style="margin: 0;">
+            Focused on Python, machine learning, data analysis, automation, and building a strong portfolio for freelance work.
+          </p>
+          <div class="pill-row">
+            <div class="pill">Machine Learning</div>
+            <div class="pill">Data Analysis</div>
+            <div class="pill">Python</div>
+            <div class="pill">Telegram Bots</div>
+          </div>
+        </div>
+
+        <div class="profile-box" style="margin-top: 18px;">
+          <div style="font-weight: 700; margin-bottom: 8px;">Current direction</div>
+          <div class="muted">Positioning around ML + Python with practical analytics and automation projects.</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container grid-2">
+      <div class="card about-card">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-text">
+          I am a student of Artificial Intelligence in Business at Lublin University of Technology.
+          I work with Python, R, Excel, statistics, and machine learning basics. My goal is to create practical,
+          understandable solutions from raw data and improve step by step as an ML engineer.
+        </p>
+        <p class="muted">
+          I am especially interested in data cleaning, regression, model building, visual analysis, automation, and portfolio-ready projects.
+        </p>
+      </div>
+
+      <div class="card skills-card" id="skills">
+        <h2 class="section-title">Core Skills</h2>
+        <div class="skills-list">
+          <span class="skill">Python</span>
+          <span class="skill">Machine Learning</span>
+          <span class="skill">Data Analysis</span>
+          <span class="skill">pandas</span>
+          <span class="skill">NumPy</span>
+          <span class="skill">scikit-learn</span>
+          <span class="skill">Statistics</span>
+          <span class="skill">Regression</span>
+          <span class="skill">Data Visualization</span>
+          <span class="skill">Excel</span>
+          <span class="skill">R / RStudio</span>
+          <span class="skill">API Integration</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-text">
+        Selected projects focused on Python, analytics, automation, APIs, and practical machine learning work.
+      </p>
+
+      <div class="projects-grid">
+        <div class="card project-card">
+          <h3>Crypto Price Tracker Bot</h3>
+          <p>
+            A professional Telegram bot built with Python and Aiogram that tracks real-time cryptocurrency prices and market trends using the CoinGecko API.
+            It provides instant updates, 24-hour change indicators, an interactive inline keyboard menu, and strong error handling.
+          </p>
+          <div class="project-tags">
+            <span class="pill">Python</span>
+            <span class="pill">Aiogram</span>
+            <span class="pill">CoinGecko API</span>
+            <span class="pill">Telegram Bot</span>
+          </div>
+          <div class="project-links">
+            <a class="btn" href="https://github.com/RoninXDark/CryptoPriceTracker-Bot" target="_blank" rel="noreferrer">GitHub</a> target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <h3>MBS Analytics Tool</h3>
+          <p>
+            A client-facing analytics tool for mortgage-backed securities workflows. It supports price history charts,
+            batch processing, spread calculation, residual analysis, and automated report generation from Excel and CSV data.
+          </p>
+          <div class="project-tags">
+            <span class="pill">Python</span>
+            <span class="pill">Analytics</span>
+            <span class="pill">Charts</span>
+            <span class="pill">Excel Reports</span>
+          </div>
+          <div class="project-links">
+            <a class="btn" href="https://github.com/RoninXDark/MBS-Analytics-Tool" target="_blank" rel="noreferrer">GitHub</a> target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <h3>Sales Analysis & Forecasting</h3>
+          <p>
+            A Python analytics project that generates synthetic sales data, analyzes monthly revenue trends, visualizes product performance,
+            and predicts next-month sales using linear regression with pandas, matplotlib, and scikit-learn.
+          </p>
+          <div class="project-tags">
+            <span class="pill">Python</span>
+            <span class="pill">pandas</span>
+            <span class="pill">scikit-learn</span>
+            <span class="pill">Forecasting</span>
+          </div>
+          <div class="project-links">
+            <a class="btn" href="https://github.com/RoninXDark/Sales-Analysis-AI" target="_blank" rel="noreferrer">GitHub</a> target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <div class="container">
+      <h2 class="section-title">Certificates</h2>
+      <p class="section-text">
+        IBM SkillsBuild certifications that support my AI and machine learning direction.
+      </p>
+
+      <div class="cert-list">
+        <div class="card cert-item">
+          <div style="font-weight: 700; margin-bottom: 6px;">Building AI Solutions Using Advanced Algorithms and Open Source Frameworks</div>
+          <div class="muted">IBM SkillsBuild • Issued Apr 6, 2026</div>
+        </div>
+        <div class="card cert-item">
+          <div style="font-weight: 700; margin-bottom: 6px;">Building Trustworthy AI Enterprise Solutions</div>
+          <div class="muted">IBM SkillsBuild • Issued Apr 12, 2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="card contact-card">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-text">
+          Open to freelance and portfolio-building opportunities in Python, data analysis, machine learning, and automation.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="mailto:stanislavmihajlickij@gmail.com">Email Me</a>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href="https://www.upwork.com/freelancers/~01a8f8f46065f65706" target="_blank" rel="noreferrer">Upwork</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">© 2026 Stanislav Mykhailytskyi • Built for a stronger ML & Python portfolio</div>
+  </footer>
+</body>
+</html>
