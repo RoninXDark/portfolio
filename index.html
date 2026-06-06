@@ -3,575 +3,339 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stanislav Mykhailytskyi | ML & Python Portfolio</title>
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
-
-    :root {
-      --bg: #0f1118;
-      --bg-soft: #171b27;
-      --card: #1a1f2d;
-      --text: #f7f8fc;
-      --muted: #adb3c4;
-      --line: rgba(255, 255, 255, 0.11);
-      --green: #66da86;
-      --green-strong: #3fbf66;
-      --amber: #ffcc70;
-      --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
-      --radius: 22px;
-      --max-width: 1120px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      color: var(--text);
-      background:
-        radial-gradient(700px 420px at 8% -10%, rgba(102, 218, 134, 0.2), transparent 60%),
-        radial-gradient(620px 420px at 100% 0%, rgba(255, 204, 112, 0.14), transparent 65%),
-        linear-gradient(170deg, #0f1118 0%, #121726 45%, #0f1118 100%);
-      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
-      line-height: 1.58;
-      min-height: 100vh;
-    }
-
-    h1,
-    h2,
-    h3,
-    .logo {
-      font-family: "Sora", "Segoe UI", sans-serif;
-      letter-spacing: -0.02em;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(calc(100% - 32px), var(--max-width));
-      margin: 0 auto;
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(15, 17, 24, 0.83);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 0;
-      gap: 20px;
-    }
-
-    .logo {
-      font-weight: 700;
-      font-size: 1.06rem;
-    }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .hero {
-      padding: 76px 0 34px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 20px;
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-main {
-      padding: 38px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-main::after {
-      content: "";
-      position: absolute;
-      inset: auto -120px -140px auto;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(102, 218, 134, 0.25), transparent 65%);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border-radius: 999px;
-      padding: 8px 14px;
-      font-weight: 500;
-      font-size: 0.88rem;
-      background: rgba(102, 218, 134, 0.12);
-      border: 1px solid rgba(102, 218, 134, 0.25);
-      color: #b5ffcc;
-      margin-bottom: 16px;
-    }
-
-    h1 {
-      font-size: clamp(2.1rem, 5.5vw, 4rem);
-      line-height: 1.05;
-      margin: 0 0 14px;
-    }
-
-    .lead {
-      color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 720px;
-      margin: 0 0 24px;
-    }
-
-    .cta-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      padding: 11px 18px;
-      font-weight: 600;
-      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(102, 218, 134, 0.6);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--green), var(--green-strong));
-      color: #0b2513;
-      border: 0;
-    }
-
-    .hero-side {
-      padding: 24px;
-      display: grid;
-      gap: 14px;
-      align-content: start;
-    }
-
-    .profile-box {
-      padding: 18px;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    .profile-head {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .avatar {
-      width: 58px;
-      height: 58px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      font-family: "Sora", "Segoe UI", sans-serif;
-      font-weight: 700;
-      background: linear-gradient(135deg, rgba(102, 218, 134, 0.35), rgba(255, 204, 112, 0.3));
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      color: #f7fff8;
-    }
-
-    .profile-name {
-      font-size: 1.03rem;
-      font-weight: 600;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .chip {
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 0.84rem;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.05);
-      color: #e9ecf6;
-    }
-
-    section {
-      padding: 18px 0 14px;
-    }
-
-    .section-title {
-      margin: 0 0 14px;
-      font-size: 1.75rem;
-    }
-
-    .section-subtitle {
-      color: var(--muted);
-      margin: 0 0 20px;
-      max-width: 760px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .panel {
-      padding: 28px;
-    }
-
-    .list {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-      display: grid;
-      gap: 8px;
-    }
-
-    .skills-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .skill {
-      padding: 9px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(102, 218, 134, 0.35);
-      background: rgba(102, 218, 134, 0.12);
-      font-weight: 500;
-      color: #deffe8;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .project h3 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-    }
-
-    .project p {
-      margin: 0 0 14px;
-      color: var(--muted);
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .tag {
-      font-size: 0.82rem;
-      padding: 5px 9px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.05);
-      color: #d8ddea;
-    }
-
-    .certs {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .cert h3 {
-      margin: 0 0 8px;
-      font-size: 1.18rem;
-    }
-
-    .cert p {
-      margin: 5px 0;
-      color: var(--muted);
-    }
-
-    .contact-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    .footer {
-      padding: 30px 0 42px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      animation: reveal 0.75s ease forwards;
-    }
-
-    .delay-1 {
-      animation-delay: 0.08s;
-    }
-
-    .delay-2 {
-      animation-delay: 0.15s;
-    }
-
-    .delay-3 {
-      animation-delay: 0.22s;
-    }
-
-    @keyframes reveal {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .grid-2,
-      .projects-grid,
-      .certs {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-main,
-      .panel,
-      .hero-side {
-        padding: 22px;
-      }
-
-    }
-  </style>
+  <meta name="description" content="Stanislav Mykhailytskyi - Python Data & AI Automation Developer based in Lublin, Poland.">
+  <title>Stanislav Mykhailytskyi | Python Data & AI Automation Developer</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <nav class="nav">
-    <div class="container nav-inner">
-      <div class="logo">Stanislav Mykhailytskyi</div>
-      <div class="nav-links">
+  <header class="site-header" id="top">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Stanislav Mykhailytskyi home">
+        <span class="brand-mark">SM</span>
+        <span>Stanislav Mykhailytskyi</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" data-nav-links>
         <a href="#about">About</a>
-        <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
         <a href="#certifications">Certifications</a>
+        <a href="#services">Services</a>
         <a href="#contact">Contact</a>
       </div>
-    </div>
-  </nav>
-
-  <header class="hero">
-    <div class="container hero-grid">
-      <div class="card hero-main reveal">
-        <div class="eyebrow">Open for freelance projects</div>
-        <h1>Machine Learning Engineer | Python | Data Analysis</h1>
-        <p class="lead">
-          I help turn raw data into useful insights and practical models.
-          My focus is clean analysis, clear communication, and solutions that are easy to use.
-        </p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="https://github.com/RoninXDark" target="_blank" rel="noreferrer">View GitHub</a>
-          <a class="btn" href="https://www.upwork.com/freelancers/~01a8f8f46065f65706" target="_blank" rel="noreferrer">View Upwork</a>
-        </div>
-      </div>
-
-      <aside class="card hero-side reveal delay-1">
-        <div class="profile-box">
-          <div class="profile-head">
-            <div class="avatar">SM</div>
-            <div>
-              <div class="profile-name">Stanislav Mykhailytskyi</div>
-              <div class="muted">AI in Business student, Lublin University of Technology</div>
-            </div>
-          </div>
-          <p class="muted" style="margin: 0;">
-            I build portfolio-grade Python projects in analytics, automation, and machine learning.
-          </p>
-          <div class="chips">
-            <span class="chip">Python</span>
-            <span class="chip">Machine Learning</span>
-            <span class="chip">Data Analysis</span>
-            <span class="chip">Automation</span>
-          </div>
-        </div>
-        <div class="profile-box">
-          <div style="font-weight: 600; margin-bottom: 6px;">What clients get</div>
-          <div class="muted">Structured code, readable reports, and on-time delivery.</div>
-        </div>
-      </aside>
-    </div>
+    </nav>
   </header>
 
-  <section id="about">
-    <div class="container grid-2">
-      <article class="card panel reveal delay-1">
-        <h2 class="section-title">About</h2>
-        <p class="section-subtitle">
-          I work at the intersection of analytics and machine learning, from data cleaning to model evaluation.
-        </p>
-        <ul class="list">
-          <li>Analyze and prepare messy datasets for decision-making.</li>
-          <li>Build baseline ML models for regression and classification tasks.</li>
-          <li>Create visual reports in Python for business and academic use.</li>
-          <li>Automate repetitive workflows with scripts and APIs.</li>
-        </ul>
-      </article>
-
-      <article class="card panel reveal delay-2" id="skills">
-        <h2 class="section-title">Core Skills</h2>
-        <div class="skills-wrap">
-          <span class="skill">Data Analysis</span>
-          <span class="skill">Python</span>
-          <span class="skill">Machine Learning</span>
-          <span class="skill">scikit-learn</span>
-          <span class="skill">pandas</span>
-          <span class="skill">NumPy</span>
-          <span class="skill">R / RStudio</span>
-          <span class="skill">Statistics</span>
-          <span class="skill">Data Visualization</span>
-          <span class="skill">Excel</span>
-          <span class="skill">API Integration</span>
-          <span class="skill">Automation</span>
+  <main>
+    <section class="hero section-band">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Lublin, Poland - Junior Python Developer</p>
+          <h1>Stanislav Mykhailytskyi</h1>
+          <p class="hero-title">Python Data & AI Automation Developer</p>
+          <p class="hero-subtitle">I build Python tools for data analysis, reporting automation, and AI-assisted workflows.</p>
+          <p class="hero-text">
+            Junior Python developer studying Artificial Intelligence in Business and building practical tools that turn raw data into clear reports, charts, and business insights.
+          </p>
+          <div class="button-row" aria-label="Primary links">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn" href="assets/Stanislav_Mykhailytskyi_CV.pdf" download>Download CV</a>
+            <a class="btn" href="https://github.com/RoninXDark" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn" href="https://www.upwork.com/freelancers/~01a8f8f46065f65706" target="_blank" rel="noreferrer">Upwork</a>
+            <a class="btn" href="https://www.credly.com/users/stanislav-mykhailytskyi/badges#credly" target="_blank" rel="noreferrer">Credly</a>
+          </div>
         </div>
-      </article>
-    </div>
-  </section>
 
-  <section id="projects">
-    <div class="container">
-      <h2 class="section-title">Featured Projects</h2>
-      <p class="section-subtitle">
-        Public repositories that show practical Python work in analytics and automation.
-      </p>
-      <div class="projects-grid">
-        <article class="card panel project reveal delay-1">
-          <h3>MBS Analytics Tool</h3>
-          <p>Desktop tool for mortgage-backed securities analysis with charting, spread calculations, and report workflows.</p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">Tkinter</span>
-            <span class="tag">Analytics</span>
-            <span class="tag">Reporting</span>
+        <aside class="hero-panel reveal" aria-label="Portfolio summary">
+          <div class="status-pill">Available for junior Python/Data roles and freelance automation work</div>
+          <div class="hero-metric">
+            <strong>800+</strong>
+            <span>MBS instruments processed in the main analytics workflow</span>
           </div>
-          <a class="btn" href="https://github.com/RoninXDark/MBS-Analytics-Tool" target="_blank" rel="noreferrer">Open Repository</a>
-        </article>
+          <div class="hero-metric">
+            <strong>4</strong>
+            <span>portfolio focus areas: automation, analytics, reports, AI tools</span>
+          </div>
+          <div class="hero-tags">
+            <span>Python</span>
+            <span>pandas</span>
+            <span>Tkinter</span>
+            <span>AI tools</span>
+            <span>Reporting</span>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-        <article class="card panel project reveal delay-2">
-          <h3>Sales Analysis AI</h3>
-          <p>Project for sales trend analysis and forecasting with visual exploration and linear regression modeling.</p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">pandas</span>
-            <span class="tag">scikit-learn</span>
-            <span class="tag">Forecasting</span>
+    <section class="section" id="about">
+      <div class="container split-layout">
+        <div>
+          <p class="section-kicker">About</p>
+          <h2>I build practical Python tools around real business data.</h2>
+        </div>
+        <div class="content-stack">
+          <p>
+            I am a Python Data & AI Automation Developer focused on building practical tools that automate repetitive data work, generate reports, and help users make faster decisions.
+          </p>
+          <p>
+            My strongest experience is developing an MBS analytics desktop application that processes Bloomberg-style financial exports, analyzes 800+ Mortgage-Backed Securities, generates charts, calculates Z-scores and payups, and automates BUY/SELL idea reporting workflows.
+          </p>
+          <p>
+            I combine Python, pandas, data analysis, desktop GUI development, and generative AI tools to create business-oriented software that saves time and reduces manual Excel work.
+          </p>
+          <div class="education-block">
+            <span>Education</span>
+            <strong>Lublin University of Technology</strong>
+            <p>Bachelor's Degree in Artificial Intelligence in Business, 2024-2028</p>
           </div>
-          <a class="btn" href="https://github.com/RoninXDark/Sales-Analysis-AI" target="_blank" rel="noreferrer">Open Repository</a>
-        </article>
+        </div>
+      </div>
+    </section>
 
-        <article class="card panel project reveal delay-3">
-          <h3>CryptoPriceTracker Bot</h3>
-          <p>Telegram bot that fetches real-time crypto prices and market change signals through the CoinGecko API.</p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">Aiogram</span>
-            <span class="tag">Telegram</span>
-            <span class="tag">API</span>
+    <section class="section section-alt" id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">Featured Projects</p>
+          <h2>Portfolio projects focused on automation, analytics, and practical AI.</h2>
+        </div>
+
+        <div class="project-grid">
+          <article class="card project-card featured" id="mbs-project">
+            <div class="card-topline">
+              <span class="badge">Main Project / Freelance Project</span>
+            </div>
+            <h3>MBS Analytics & Reporting Tool</h3>
+            <p>
+              A standalone Python desktop application for analyzing Mortgage-Backed Securities data from Bloomberg-style Excel/CSV exports. The tool automates reporting workflows, generates charts, calculates financial metrics, and helps identify BUY/SELL opportunities.
+            </p>
+            <ul class="check-list">
+              <li>Processes 800+ MBS instruments</li>
+              <li>Bloomberg-style Excel/CSV data ingestion</li>
+              <li>Automated charts and reports</li>
+              <li>BUY/SELL idea scans</li>
+              <li>Z-score and payup calculations</li>
+              <li>Portable zero-installation executable</li>
+            </ul>
+            <p class="tech-line">Python, pandas, Tkinter, matplotlib, openpyxl, data analysis, automation</p>
+            <div class="card-actions">
+              <a class="btn btn-small btn-primary" href="https://github.com/RoninXDark/MBS-Analytics-Tool" target="_blank" rel="noreferrer">View on GitHub</a>
+              <a class="btn btn-small" href="#mbs-case-study">Case Study</a>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="card-topline">
+              <span class="badge">AI / RAG / IBM Granite</span>
+            </div>
+            <h3>IBM AI Portfolio Projects</h3>
+            <p>
+              A collection of practical AI projects built while studying IBM SkillsBuild and generative AI workflows. Includes RAG, data summarization, classification, time-series forecasting, and IBM Granite-based experiments.
+            </p>
+            <ul class="check-list">
+              <li>Retrieval-Augmented Generation intro project</li>
+              <li>IBM Granite summarization and classification workflows</li>
+              <li>Energy demand forecasting lab</li>
+              <li>Ethical AI and trustworthy AI learning</li>
+            </ul>
+            <p class="tech-line">Python, Jupyter Notebook, IBM Granite, RAG, LangChain basics, data analysis</p>
+            <div class="card-actions">
+              <a class="btn btn-small btn-primary" href="https://github.com/RoninXDark/ibm-ai-portfolio-projects" target="_blank" rel="noreferrer">View on GitHub</a>
+              <a class="btn btn-small" href="https://www.credly.com/users/stanislav-mykhailytskyi/badges#credly" target="_blank" rel="noreferrer">View Credentials</a>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="card-topline">
+              <span class="badge">Telegram Bot / API Automation</span>
+            </div>
+            <h3>Crypto Price Tracker Bot</h3>
+            <p>
+              A Python Telegram bot that tracks cryptocurrency prices using external API data. Built to practice API integration, bot development, and simple automation workflows.
+            </p>
+            <ul class="check-list">
+              <li>Telegram bot interface</li>
+              <li>Crypto price tracking</li>
+              <li>External API integration</li>
+              <li>User-friendly commands</li>
+              <li>Error handling basics</li>
+            </ul>
+            <p class="tech-line">Python, Aiogram, APIs, automation, Telegram Bot API</p>
+            <div class="card-actions">
+              <a class="btn btn-small btn-primary" href="https://github.com/RoninXDark/CryptoPriceTracker-Bot" target="_blank" rel="noreferrer">View on GitHub</a>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="card-topline">
+              <span class="badge">Data Analysis / ML Practice</span>
+            </div>
+            <h3>Sales Analysis AI</h3>
+            <p>
+              A data analysis and machine learning practice project focused on sales data processing, visualization, and simple predictive modeling.
+            </p>
+            <ul class="check-list">
+              <li>Data cleaning and preprocessing</li>
+              <li>Exploratory data analysis</li>
+              <li>Sales visualization</li>
+              <li>Basic machine learning model</li>
+              <li>Python data workflow practice</li>
+            </ul>
+            <p class="tech-line">Python, pandas, NumPy, matplotlib, scikit-learn</p>
+            <div class="card-actions">
+              <a class="btn btn-small btn-primary" href="https://github.com/RoninXDark/Sales-Analysis-AI" target="_blank" rel="noreferrer">View on GitHub</a>
+            </div>
+          </article>
+        </div>
+
+        <article class="case-study" id="mbs-case-study">
+          <div>
+            <p class="section-kicker">Case Study Snapshot</p>
+            <h3>MBS Analytics Tool</h3>
           </div>
-          <a class="btn" href="https://github.com/RoninXDark/CryptoPriceTracker-Bot" target="_blank" rel="noreferrer">Open Repository</a>
+          <p>
+            The MBS tool is the strongest portfolio asset because it solves a specific business workflow: turning Bloomberg-style fixed-income exports into analyst-ready charts, metrics, and Excel reports. The project shows practical Python, GUI design, data cleaning, and reporting automation in one application.
+          </p>
         </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="certifications">
-    <div class="container">
-      <h2 class="section-title">Certifications</h2>
-      <p class="section-subtitle">IBM SkillsBuild certificates relevant to practical AI development.</p>
-      <div class="certs">
-        <article class="card panel cert reveal delay-1">
-          <h3>Building Trustworthy AI Enterprise Solutions</h3>
-          <p><strong>Provider:</strong> IBM SkillsBuild</p>
-          <p><strong>Issued:</strong> April 2026</p>
-          <p><strong>ID:</strong> 4c8987f1-1736-408f-b179-a72a6ae59791</p>
-        </article>
-        <article class="card panel cert reveal delay-2">
-          <h3>Building AI Solutions Using Advanced Algorithms and Open Source Frameworks</h3>
-          <p><strong>Provider:</strong> IBM SkillsBuild</p>
-          <p><strong>Issued:</strong> April 2026</p>
-          <p><strong>ID:</strong> 71748752-c209-4b9d-ad4c-6f3edc1d58dd</p>
-        </article>
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">Skills</p>
+          <h2>Focused on practical Python, data workflows, and AI-assisted tools.</h2>
+        </div>
+        <div class="skills-grid">
+          <article class="card skill-card">
+            <h3>Python & Automation</h3>
+            <div class="skill-list">
+              <span>Python</span><span>pandas</span><span>NumPy</span><span>openpyxl</span><span>Tkinter</span><span>API Integration</span><span>Telegram Bots</span><span>Git</span>
+            </div>
+          </article>
+          <article class="card skill-card">
+            <h3>Data Analysis & Reporting</h3>
+            <div class="skill-list">
+              <span>Data Cleaning</span><span>Data Visualization</span><span>Excel/CSV Automation</span><span>Business Reports</span><span>Statistics</span><span>Regression</span><span>Financial Data Analysis</span>
+            </div>
+          </article>
+          <article class="card skill-card">
+            <h3>AI & Machine Learning</h3>
+            <div class="skill-list">
+              <span>scikit-learn</span><span>Machine Learning Basics</span><span>Predictive Analytics</span><span>Generative AI</span><span>RAG Basics</span><span>IBM Granite</span><span>LangChain Basics</span>
+            </div>
+          </article>
+          <article class="card skill-card">
+            <h3>Tools</h3>
+            <div class="skill-list">
+              <span>GitHub</span><span>VS Code / PyCharm</span><span>R / RStudio</span><span>Excel</span><span>Jupyter Notebook</span><span>Docker basics</span><span>PostgreSQL basics</span>
+            </div>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="contact">
-    <div class="container">
-      <article class="card panel reveal delay-1">
-        <h2 class="section-title">Contact</h2>
-        <p class="section-subtitle">
-          I am available for freelance tasks in data analysis, Python automation, and entry-level machine learning.
-        </p>
-        <div class="contact-row">
-          <a class="btn btn-primary" href="mailto:stanislavmihajlickij@gmail.com">Email me to stanislavmihajlickij@gmail.com</a>
+    <section class="section section-alt" id="certifications">
+      <div class="container">
+        <div class="section-heading with-action">
+          <div>
+            <p class="section-kicker">Certifications & AI Learning</p>
+            <h2>IBM SkillsBuild, Credly badges, and practical AI portfolio work.</h2>
+            <p>I actively develop my AI and data skills through IBM SkillsBuild, Credly badges, and practical portfolio projects.</p>
+          </div>
+          <a class="btn" href="https://www.credly.com/users/stanislav-mykhailytskyi/badges#credly" target="_blank" rel="noreferrer">View Credly Profile</a>
+        </div>
+
+        <div class="cert-grid">
+          <article class="cert-card image-card">
+            <img src="assets/ibm-rag.png" alt="IBM Introduction to Retrieval-Augmented Generation digital sticker">
+            <h3>Introduction to Retrieval-Augmented Generation</h3>
+          </article>
+          <article class="cert-card image-card">
+            <img src="assets/ibm-granite-classification.png" alt="IBM Granite classification digital sticker">
+            <h3>Classifying Data Using IBM Granite</h3>
+          </article>
+          <article class="cert-card image-card">
+            <img src="assets/ibm-summarizing.png" alt="IBM Granite summarizing digital sticker">
+            <h3>Summarizing Data Using IBM Granite</h3>
+          </article>
+          <article class="cert-card image-card">
+            <img src="assets/ibm-software-development.png" alt="IBM Granite Models for Software Development digital sticker">
+            <h3>IBM Granite Models for Software Development</h3>
+          </article>
+          <article class="cert-card image-card">
+            <img src="assets/ibm-ethical-ai.png" alt="IBM Ethical Considerations for Generative AI digital sticker">
+            <h3>Ethical Considerations for Generative AI</h3>
+          </article>
+          <article class="cert-card image-card">
+            <img src="assets/ibm-genai-dev.png" alt="IBM Use Generative AI for Software Development digital sticker">
+            <h3>Use Generative AI for Software Development</h3>
+          </article>
+        </div>
+
+        <div class="cert-list" aria-label="Additional certifications">
+          <span>IBM SkillsBuild - Generative AI in Action</span>
+          <span>IBM SkillsBuild - AI Solutions with Advanced Algorithms</span>
+          <span>IBM SkillsBuild - Trustworthy AI Enterprise Solutions</span>
+          <span>IBM SkillsBuild Lab - Forecast Energy Demand with IBM Granite Time Series</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">Services</p>
+          <h2>What I Can Help With</h2>
+          <p>I focus on practical tools that are easy to use, clearly documented, and built around real business needs.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">Python automation scripts</article>
+          <article class="service-card">Excel/CSV data processing</article>
+          <article class="service-card">Data cleaning and preprocessing</article>
+          <article class="service-card">Automated reports and charts</article>
+          <article class="service-card">Business data analysis</article>
+          <article class="service-card">Basic machine learning models</article>
+          <article class="service-card">AI-assisted document workflows</article>
+          <article class="service-card">Telegram bots and API integrations</article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="container contact-card">
+        <div>
+          <p class="section-kicker">Contact</p>
+          <h2>Let's build something useful</h2>
+          <p>
+            I am open to junior Python/Data roles, freelance automation projects, and practical AI/data tool development.
+          </p>
+          <dl class="contact-list">
+            <div><dt>Email</dt><dd><a href="mailto:stanislavmihajlickij@gmail.com">stanislavmihajlickij@gmail.com</a></dd></div>
+            <div><dt>GitHub</dt><dd><a href="https://github.com/RoninXDark" target="_blank" rel="noreferrer">github.com/RoninXDark</a></dd></div>
+            <div><dt>Upwork</dt><dd><a href="https://www.upwork.com/freelancers/~01a8f8f46065f65706" target="_blank" rel="noreferrer">Upwork profile</a></dd></div>
+            <div><dt>Credly</dt><dd><a href="https://www.credly.com/users/stanislav-mykhailytskyi/badges#credly" target="_blank" rel="noreferrer">Credly badges</a></dd></div>
+            <div><dt>Location</dt><dd>Lublin, Poland</dd></div>
+          </dl>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:stanislavmihajlickij@gmail.com">Email Me</a>
           <a class="btn" href="https://github.com/RoninXDark" target="_blank" rel="noreferrer">GitHub</a>
           <a class="btn" href="https://www.upwork.com/freelancers/~01a8f8f46065f65706" target="_blank" rel="noreferrer">Upwork</a>
         </div>
-      </article>
-    </div>
-  </section>
+      </div>
+    </section>
+  </main>
 
   <footer class="footer">
-    <div class="container">(c) 2026 Stanislav Mykhailytskyi. Built for a clean and practical ML portfolio.</div>
+    <div class="container">
+      <p>&copy; 2026 Stanislav Mykhailytskyi. Python Data & AI Automation Developer.</p>
+    </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
