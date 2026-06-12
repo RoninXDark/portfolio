@@ -30,10 +30,7 @@ body {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.6;
   color: var(--text);
-  background:
-    radial-gradient(circle at 15% 0%, rgba(77, 208, 225, 0.18), transparent 30%),
-    radial-gradient(circle at 85% 12%, rgba(124, 92, 255, 0.16), transparent 34%),
-    linear-gradient(180deg, #080b12 0%, #0b1020 44%, #080b12 100%);
+  background: var(--bg);
   min-height: 100vh;
 }
 
@@ -122,7 +119,7 @@ p {
   display: grid;
   place-items: center;
   border-radius: var(--radius);
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  background: var(--accent);
   color: #061018;
   font-size: 0.92rem;
 }
@@ -253,12 +250,12 @@ p {
 
 .btn-primary {
   border-color: transparent;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  background: var(--accent);
   color: #041018;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #79effa, #9a82ff);
+  background: #79effa;
 }
 
 .btn-small {
@@ -402,10 +399,47 @@ p {
 }
 
 .project-card.featured {
-  grid-row: span 2;
   background:
     linear-gradient(180deg, rgba(77, 208, 225, 0.1), rgba(255, 255, 255, 0.03)),
     var(--card);
+}
+
+.project-media {
+  width: calc(100% + 48px);
+  margin: -24px -24px 20px;
+  aspect-ratio: 16 / 8;
+  object-fit: cover;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.additional-projects {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.compact-project {
+  min-height: 210px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.compact-label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 780;
+  text-transform: uppercase;
 }
 
 .badge {
@@ -591,6 +625,7 @@ p {
   }
 
   .project-grid,
+  .additional-projects,
   .skills-grid,
   .cert-grid,
   .service-grid {
@@ -651,6 +686,7 @@ p {
   }
 
   .project-grid,
+  .additional-projects,
   .skills-grid,
   .cert-grid,
   .service-grid {
